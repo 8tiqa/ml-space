@@ -7,8 +7,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 
 def Plot2D(T, title, x, y, num_to_plot=40):
-  # This method picks a bunch of random samples (images in your case)
-  # to plot onto the chart:
+  # This method picks a bunch of random samples to plot onto the chart:
   fig = plt.figure()
   ax = fig.add_subplot(111)
   ax.set_title(title)
@@ -28,9 +27,7 @@ def Plot2D(T, title, x, y, num_to_plot=40):
 
 
 
-# A .MAT file is a .MATLAB file. The faces dataset could have came
-# in through .png images, but we'll show you how to do that in
-# anither lab. For now, you'll see how to import .mats:
+# A .MAT file is a .MATLAB file. 
 mat = scipy.io.loadmat('E:/Study/MPPData/Python/DAT210x-master/Module4/Datasets/face_data.mat')
 df = pd.DataFrame(mat['images']).T
 num_images, num_pixels = df.shape
@@ -42,12 +39,12 @@ for i in range(num_images):
 
 
 #
-# TODO: Implement PCA here. Reduce the dataframe df down
-# to THREE components. Once you've done that, call Plot2D.
+# PCA: Reduce the dataframe df down to THREE components.
 from sklearn.decomposition import PCA
 pca = PCA(n_components=3, svd_solver='full')
 pca.fit(df)
 T = pca.transform(df)
+
 #
 # The format is: Plot2D(T, title, x, y, num_to_plot=40):
 # T is your transformed data, NDArray.
@@ -55,15 +52,13 @@ T = pca.transform(df)
 # x is the principal component you want displayed on the x-axis, Can be 0 or 1
 # y is the principal component you want displayed on the y-axis, Can be 1 or 2
 Plot2D(T, "PCA Plot", 0, 1, num_to_plot=40)
-#
-# TODO: Implement Isomap here. Reduce the dataframe df down
-# to THREE components. Once you've done that, call Plot2D using
-# the first two components.
-#
+
+# Isomap: Reduce the dataframe df down to THREE components.
 from sklearn import manifold
 iso = manifold.Isomap(n_neighbors=4, n_components=2)
 iso.fit(df)
 Y = iso.transform(df)
+
 Plot2D(Y,'isomap',0,1)
 
 

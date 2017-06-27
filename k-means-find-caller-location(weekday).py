@@ -80,7 +80,7 @@ week_days = ['Mon','Tue','Wed','Thurs', 'Fri']
 user1 = user1[(user1['DOW'].isin(week_days))]
 
 #
-# TODO: The idea is that the call was placed before 5pm. From Midnight-730a, the user is
+# The idea is that the call was placed before 5pm. From Midnight-730a, the user is
 # probably sleeping and won't call / wake up to take a call. There should be a brief time
 # in the morning during their commute to work, then they'll spend the entire day at work.
 # So the assumption is that most of the time is spent either at work, or in 2nd, at home.
@@ -88,7 +88,7 @@ user1 = user1[(user1['DOW'].isin(week_days))]
 user1 = user1[((user1['CallTime'] < '17:00:00') & (user1['CallTime'] >= '00:00:00'))]
 
 #
-# TODO: Plot the Cell Towers the user connected to
+# Plot the Cell Towers the user connected to
 #
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -123,4 +123,4 @@ print "    Its Waypoint Time: ", midWaySamples.CallTime.mean()
 ax.scatter(model.cluster_centers_[:,1], model.cluster_centers_[:,0], s=169, c='r', marker='x', alpha=0.8, linewidths=2)
 #
 # Then save the results:
-showandtell('Weekday Calls Centroids')  # Comment this line out when you're ready to proceed
+showandtell('Weekday Calls Centroids')  

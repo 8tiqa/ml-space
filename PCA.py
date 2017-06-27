@@ -13,7 +13,6 @@ from plyfile import PlyData, PlyElement
 reduce_factor = 100
 
 
-# Look pretty...
 matplotlib.style.use('ggplot')
 
 
@@ -28,15 +27,9 @@ armadillo = pd.DataFrame({
 
 def do_PCA(armadillo):
   #
-  # TODO: Write code to import the libraries required for PCA.
-  # Then, train your PCA on the armadillo dataframe. Finally,
+  # train PCA on the armadillo dataframe. 
   # drop one dimension (reduce it down to 2D) and project the
   # armadillo down to the 2D principal component feature space.
-  #
-  # NOTE: Be sure to RETURN your projected armadillo! 
-  # (This projection is actually stored in a NumPy NDArray and
-  # not a Pandas dataframe, which is something Pandas does for
-  # you automatically. =)
   #
    from sklearn.decomposition import PCA
    pca = PCA(n_components=2, svd_solver='full')
@@ -47,25 +40,10 @@ def do_PCA(armadillo):
 
 def do_RandomizedPCA(armadillo):
   #
-  # TODO: Write code to import the libraries required for
-  # RandomizedPCA. Then, train your RandomizedPCA on the armadillo
-  # dataframe. Finally, drop one dimension (reduce it down to 2D)
+  # train RandomizedPCA on the armadillo
+  # drop one dimension (reduce it down to 2D)
   # and project the armadillo down to the 2D principal component
   # feature space.
-  #
-  # NOTE: Be sure to RETURN your projected armadillo! 
-  # (This projection is actually stored in a NumPy NDArray and
-  # not a Pandas dataframe, which is something Pandas does for
-  # you automatically. =)
-  #
-  # NOTE: SKLearn deprecated the RandomizedPCA method, but still
-  # has instructions on how to use randomized (truncated) method
-  # for the SVD solver. To find out how to use it, set `svd_solver`
-  # to 'randomized' and check out the full docs here
-  #
-  # http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
-  #
-  # Deprecated Method: http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.RandomizedPCA.html
   #
    from sklearn.decomposition import PCA
    pca = PCA(n_components=2, svd_solver='randomized')

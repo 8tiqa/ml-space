@@ -33,6 +33,7 @@ X.columns = ['label','cap-shape','cap-surface','cap-color',' bruises',' odor','g
 X.head()
 
 # Remove rows containing missing values 
+X = X.replace('?', np.nan)
 print X[pd.isnull(X).any(axis=1)]
 X.dropna(axis = 0, inplace=True)
 

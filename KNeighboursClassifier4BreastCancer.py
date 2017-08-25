@@ -17,9 +17,9 @@ def plotDecisionBoundary(model, X, y):
   resolution = 0.1
 
   #(2 for benign, 4 for malignant)
-  colors = {2:'royalblue',4:'lightsalmon'} 
+  colors = {2:'royalblue',4:'lightsalmon'}
 
- 
+
   # Calculate the boundaris
   x_min, x_max = X[:, 0].min(), X[:, 0].max()
   y_min, y_max = X[:, 1].min(), X[:, 1].max()
@@ -54,7 +54,7 @@ def plotDecisionBoundary(model, X, y):
   plt.show()
 
 
-# 
+#
 # TODO: Load in the dataset, identify nans, and set proper headers.
 # Be sure to verify the rows line up by looking at the file in a text editor.
 #
@@ -66,7 +66,7 @@ data.dtypes
 data.nuclei = pd.to_numeric(data.nuclei, errors = 'coerce')
 
 # Copy out the status column into a slice, then drop it from the main
-# dataframe. 
+# dataframe.
 labels = data['status'].copy()
 data.drop('status', inplace = True, axis =1)
 
@@ -116,16 +116,16 @@ if Test_PCA:
   from sklearn.decomposition  import PCA
   model = PCA(n_components=2)
 
-  
+
 
 else:
   print "Computing 2D Isomap Manifold"
   from sklearn import manifold
-  model = manifold.Isomap(n_neighbors=5, n_components=2)    
+  model = manifold.Isomap(n_neighbors=5, n_components=2)
 
 
 # Train your model against data_train, then transform both
-# data_train and data_test using your model. 
+# data_train and data_test using your model.
 model.fit(data_train)
 data_train = model.transform(data_train)
 data_test = model.transform(data_test)
@@ -136,20 +136,9 @@ data_test = model.transform(data_test)
 # with it and see what results you can come up. Your goal is to find a
 # good balance where you aren't too specific (low-K), nor are you too
 # general (high-K). You should also experiment with how changing the weights
-# parameter affects the results.
-#
-# INFO: Be sure to always keep the domain of the problem in mind! It's
-# WAY more important to errantly classify a benign tumor as malignant,
-# and have it removed, than to incorrectly leave a malignant tumor, believing
-# it to be benign, and then having the patient progress in cancer. Since the UDF
-# weights don't give you any class information, the only way to introduce this
-# data into SKLearn's KNN Classifier is by "baking" it into your data. For
-# example, randomly reducing the ratio of benign samples compared to malignant
-# samples from the training set.
+# parameter affects the results
 
-
-
-# Implement KNeighborsClassifier 
+# Implement KNeighborsClassifier
 from sklearn.neighbors import KNeighborsClassifier
 knmodel =  KNeighborsClassifier(n_neighbors = 3, weights = "distance")
 knmodel.fit(data_train, label_train)
